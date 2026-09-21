@@ -1,0 +1,13 @@
+{
+  "name": "cuidar-mais",
+  "version": "1.0.0",
+  "description": "Site do hospital Cuidar + em TypeScript, gerado como um unico arquivo HTML.",
+  "private": true,
+  "scripts": {
+    "build": "node build.js",
+    "check": "tsc --project . --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0"
+  }
+}

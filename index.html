@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Cuidar +: pronto-socorro 24h, maternidade, exames e consultas com agendamento online."><title>Cuidar + — Pronto-socorro 24h e consultas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<script>if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("intro")</script>
+<style>
+:root{--bg:#F3F8F7;--surface:#fff;--ink:#0F2E33;--muted:#4A6468;--brand:#0B5D66;--brand-ink:#fff;--tint:#E0EEED;--line:#C9DDDB;--emerg:#B3261E;--low:#1E7A4F;--mid:#9A6700;--high:#B3261E;
+--serif:"Source Serif 4",Georgia,serif;--sans:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0B191B;--surface:#122325;--ink:#E5F0EF;--muted:#9DB6B4;--brand:#5CC2CB;--brand-ink:#062A2E;--tint:#173235;--line:#24413F;--emerg:#FF8A80;--low:#5FD39B;--mid:#F0B84A;--high:#FF8A80}}
+:root[data-theme="dark"]{--bg:#0B191B;--surface:#122325;--ink:#E5F0EF;--muted:#9DB6B4;--brand:#5CC2CB;--brand-ink:#062A2E;--tint:#173235;--line:#24413F;--emerg:#FF8A80;--low:#5FD39B;--mid:#F0B84A;--high:#FF8A80}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.6 var(--sans)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar-h{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:60px}
+.logo{font:600 1.6rem var(--serif);text-decoration:none;display:inline-flex;align-items:baseline}
+nav{display:flex;gap:20px;align-items:center}
+nav a{text-decoration:none;font-weight:500;color:var(--muted)}
+nav a:hover{color:var(--ink)}
+.sos{background:var(--emerg);color:#fff;padding:8px 14px;border-radius:8px;font-weight:600;text-decoration:none;white-space:nowrap}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding:64px 0}
+h1{font:600 clamp(2.2rem,5vw,3.6rem)/1.08 var(--serif);letter-spacing:-.01em;margin:0 0 20px;max-width:14ch}
+.lead{font-size:1.125rem;color:var(--muted);max-width:52ch;margin:0 0 28px}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;background:var(--brand);color:var(--brand-ink);padding:13px 22px;border-radius:10px;font-weight:600;text-decoration:none;border:0;font:600 1rem var(--sans);cursor:pointer}
+.btn.alt{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.board{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px}
+.board h2{font:600 1.25rem var(--serif);margin:0 0 4px}
+#stamp{color:var(--muted);font-size:.875rem}
+#units{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:18px}
+.unit-top{display:flex;justify-content:space-between;font-weight:500}
+.unit-min{font-variant-numeric:tabular-nums;font-weight:600}
+.bar{height:8px;border-radius:99px;background:var(--tint);margin:8px 0 4px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:99px;background:currentColor}
+.unit.low{color:var(--low)}.unit.mid{color:var(--mid)}.unit.high{color:var(--high)}
+.unit-lvl{font-size:.875rem;color:var(--muted)}
+.unit-name,.unit-min{color:var(--ink)}
+section{padding:56px 0}
+section h2.t{font:600 clamp(1.7rem,3.4vw,2.3rem)/1.15 var(--serif);margin:0 0 12px}
+.sub{color:var(--muted);max-width:60ch;margin:0 0 28px}
+.search{width:100%;max-width:420px;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);font:inherit;margin-bottom:24px}
+#spec-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.spec{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;display:flex;flex-direction:column}
+.spec h3{font:600 1.15rem var(--serif);margin:0 0 6px}
+.spec p{margin:0 0 16px;color:var(--muted);font-size:.95rem;flex:1}
+.spec-foot{display:flex;justify-content:space-between;align-items:center;font-size:.875rem;color:var(--muted)}
+.link{background:none;border:0;color:var(--brand);font:600 .95rem var(--sans);cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:4px}
+.empty{grid-column:1/-1;color:var(--muted)}
+.book{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;background:var(--tint);border-radius:20px;padding:48px}
+form,#ok{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:28px}
+label,legend{display:block;font-weight:600;margin:0 0 6px}
+.field{margin-bottom:18px}
+input:not([type=radio]),select{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit}
+[aria-invalid=true]{border-color:var(--emerg)}
+.err{color:var(--emerg);font-size:.9rem;margin:6px 0 0;min-height:0}
+fieldset{border:0;padding:0;margin:0 0 22px}
+.radios{display:flex;gap:20px}.radios label{font-weight:400;display:flex;gap:8px;align-items:center;margin:0}
+#ok{outline:none}#ok h3{font:600 1.5rem var(--serif);margin:0 0 8px}
+.code{display:inline-block;font:600 1.25rem var(--sans);letter-spacing:.06em;background:var(--tint);padding:6px 12px;border-radius:8px;margin:8px 0 20px}
+footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-size:.95rem}
+.fcols{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px}
+footer strong{color:var(--ink);display:block;margin-bottom:4px}
+@media (max-width:820px){.hero,.book{grid-template-columns:1fr;gap:32px}.book{padding:24px}.hero{padding:40px 0}}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes beat{from{stroke-dashoffset:.3}to{stroke-dashoffset:-1}}
+@keyframes ping{0%{box-shadow:0 0 0 0 currentColor}100%{box-shadow:0 0 0 10px transparent}}
+.hero h1{animation:rise .8s cubic-bezier(.2,.8,.2,1) both}
+.hero .lead{animation:rise .8s .12s cubic-bezier(.2,.8,.2,1) both}
+.hero .btns{animation:rise .8s .24s cubic-bezier(.2,.8,.2,1) both}
+.hero .ecg{animation:rise .8s .36s both}
+.board{animation:rise .9s .3s cubic-bezier(.2,.8,.2,1) both}
+.ecg{display:block;width:100%;max-width:420px;height:56px;margin-top:32px;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.ecg .track{stroke:var(--line)}
+.ecg .pulse{stroke:var(--brand);stroke-dasharray:.3 1;animation:beat 2.6s linear infinite}
+.sos{display:inline-flex;align-items:center;gap:8px}
+.sos::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor;color:#fff;animation:ping 1.8s infinite}
+.spec{animation:pop .55s cubic-bezier(.2,.8,.2,1) backwards;transform:perspective(800px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--ty,0px));transition:transform .2s,border-color .25s,box-shadow .25s}
+.spec:hover{--ty:-4px;border-color:var(--brand);box-shadow:0 10px 24px -14px var(--brand)}
+.btn{transition:transform .2s,box-shadow .2s,background .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px -10px var(--brand)}
+.btn:active{transform:translateY(0)}
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s cubic-bezier(.2,.8,.2,1)}
+.js .rv.in{opacity:1;transform:none}
+#ok:not([hidden]){animation:pop .5s cubic-bezier(.2,.8,.2,1)}
+.bar i{transition:width .9s cubic-bezier(.2,.8,.2,1)}
+#progress{position:fixed;top:0;left:0;right:0;height:3px;background:var(--brand);transform:scaleX(0);transform-origin:left;z-index:10}
+.skip{position:absolute;left:-9999px}.skip:focus{left:12px;top:12px;z-index:20;background:var(--surface);padding:10px 14px;border-radius:8px}
+header{transition:box-shadow .3s}header.scrolled{box-shadow:0 8px 22px -16px var(--ink)}
+main{position:relative;overflow:hidden}
+.hero,.page>section,.statsbar{position:relative;z-index:1}
+.orbs i{position:absolute;border-radius:50%;filter:blur(70px);opacity:.26;background:var(--brand);animation:float 16s ease-in-out infinite alternate}
+.orbs i:first-child{width:420px;height:420px;top:-120px;right:-80px}
+.orbs i:last-child{width:320px;height:320px;top:280px;left:-120px;background:var(--low);animation-duration:21s;animation-delay:-6s}
+@keyframes float{to{transform:translate(40px,50px) scale(1.12)}}
+.board h2{display:flex;align-items:center;gap:10px}
+.board h2::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--low);color:var(--low);animation:ping 1.8s infinite}
+.btn{position:relative;overflow:hidden}
+.btn::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg)}
+.btn:hover::after{left:130%;transition:left .7s}
+.statsbar{background:var(--surface);border-block:1px solid var(--line)}
+.stats-grid{list-style:none;margin-block:0;padding-block:36px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.stat b{display:block;font:600 clamp(2rem,4vw,2.8rem)/1.1 var(--serif);color:var(--brand);font-variant-numeric:tabular-nums}
+.stat span{color:var(--muted);font-size:.95rem}
+.badge{display:grid;place-items:center;width:40px;height:40px;border-radius:10px;background:var(--tint);color:var(--brand);font:600 1.1rem var(--serif);margin-bottom:14px;transition:transform .3s,background .3s,color .3s}
+.spec:hover .badge{transform:rotate(-8deg) scale(1.1);background:var(--brand);color:var(--brand-ink)}
+.steps{counter-reset:s;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.steps li{position:relative;padding-top:26px}
+.steps li::before,.steps li::after{content:"";position:absolute;top:0;left:0;right:0;height:3px;border-radius:3px;background:var(--line)}
+.steps li::after{background:var(--brand);transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+.js .steps li::after{transform:scaleX(0);transform-origin:left}
+.js .steps.in li::after{transform:scaleX(1)}
+.steps li:nth-child(2)::after{transition-delay:.5s}.steps li:nth-child(3)::after{transition-delay:1s}.steps li:nth-child(4)::after{transition-delay:1.5s}
+.steps h3{font:600 1.1rem var(--serif);margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.steps h3::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:26px;height:26px;flex:none;border-radius:50%;background:var(--tint);color:var(--brand);font:600 .85rem var(--sans)}
+.steps p{margin:0;color:var(--muted);font-size:.95rem}
+.faq{max-width:760px;display:grid;gap:10px}
+.qa{background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.qa.open{border-color:var(--brand)}
+.qa h3{margin:0}
+.q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 20px;background:none;border:0;color:inherit;text-align:left;font:600 1.05rem var(--sans);cursor:pointer;border-radius:12px}
+.pm{position:relative;width:14px;height:14px;flex:none}
+.pm::before,.pm::after{content:"";position:absolute;left:0;right:0;top:6px;height:2px;border-radius:2px;background:var(--brand);transition:transform .35s}
+.pm::after{transform:rotate(90deg)}.qa.open .pm::after{transform:rotate(0)}
+.a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s cubic-bezier(.2,.8,.2,1)}
+.qa.open .a{grid-template-rows:1fr}
+.a>div{overflow:hidden}.a p{margin:0;padding:0 20px 18px;color:var(--muted);max-width:62ch}
+.fbot{margin-top:28px;padding-top:20px;border-top:1px solid var(--line);font-size:.875rem}
+@media (max-width:820px){.stats-grid{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:1fr}}
+.stage,.book{--bg:#08333A;--surface:#0B3F48;--ink:#F2FBFA;--muted:#A9CDCB;--brand:#4FE3F0;--brand-ink:#04262B;--tint:#0E4A54;--line:#1B5C66;--emerg:#FF8A80;--low:#5FE0A5;--mid:#F5C04A;--high:#FF7A70;background:#062F36;color:var(--ink)}
+.stage{position:relative;z-index:1;overflow:hidden}
+.stage::before{content:"";position:absolute;inset:0;background:radial-gradient(520px circle at var(--mx,72%) var(--my,28%),rgba(79,227,240,.2),transparent 65%);pointer-events:none}
+.stage .hero{padding-block:88px 160px}
+.stage h1{font-size:clamp(2.9rem,8vw,5.8rem);line-height:1.02;max-width:11ch}
+.hero h1.split{animation:none}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em;margin-bottom:-.1em}
+.w>span{display:inline-block;transform:translateY(110%);animation:up .9s calc(.15s + var(--i) * .09s) cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes up{to{transform:none}}
+.ecg-wide{position:absolute;left:0;bottom:0;width:100%;max-width:none;height:120px;margin:0;opacity:.95}
+.ecg-wide .track{stroke:var(--line)}
+.ecg-wide .pulse{stroke-dasharray:.1 1;animation-duration:4.5s;filter:drop-shadow(0 0 7px var(--brand))}
+.stage .board{background:rgba(11,63,72,.65);backdrop-filter:blur(8px);border-color:rgba(79,227,240,.3);box-shadow:0 30px 60px -30px rgba(0,0,0,.7);animation:rise .9s .3s cubic-bezier(.2,.8,.2,1) both,bob 7s 1.3s ease-in-out infinite alternate}
+@keyframes bob{to{transform:translateY(-8px)}}
+.stage .unit-min{font-size:1.3rem}
+@keyframes glow{0%{box-shadow:0 0 0 0 rgba(79,227,240,.55)}100%{box-shadow:0 0 0 16px rgba(79,227,240,0)}}
+.stage .btn:not(.alt){animation:glow 2.6s 2s infinite}
+@media (max-width:820px){.stage .hero{padding-block:48px 130px}}
+#intro{display:none}
+.intro #intro{display:block;position:fixed;inset:0;z-index:100;pointer-events:none;animation:introHide 0s 4.05s forwards}
+@keyframes introHide{to{visibility:hidden}}
+.half{position:absolute;left:0;right:0;height:50.5%;background:#062F36}
+.half.top{top:0;animation:outUp .7s 3.3s cubic-bezier(.76,0,.24,1) forwards}
+.half.bot{bottom:0;animation:outDown .7s 3.3s cubic-bezier(.76,0,.24,1) forwards}
+@keyframes outUp{to{transform:translateY(-100%)}}
+@keyframes outDown{to{transform:translateY(100%)}}
+.mark{position:absolute;inset:0;animation:markOut .3s 3.15s ease-in forwards}
+@keyframes markOut{to{opacity:0;transform:scale(1.05)}}
+.dawn{position:absolute;left:50%;top:44%;width:min(140vw,640px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(79,227,240,.28),transparent 62%);opacity:0;transform:translate(-50%,-50%) scale(.2);animation:dawnIn 1.6s .9s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes dawnIn{to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+.ie{position:absolute;left:0;top:44%;width:100%;height:120px;transform:translateY(-50%);fill:none;stroke:#4FE3F0;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 8px #4FE3F0);animation:ecgDim .6s 2.3s forwards}
+@keyframes ecgDim{to{opacity:.3}}
+.ie path{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.5s .2s cubic-bezier(.45,0,.25,1) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.emblem{position:absolute;left:50%;top:44%;width:124px;height:124px;transform:translate(-50%,-50%);filter:drop-shadow(0 0 12px rgba(79,227,240,.55))}
+.emblem circle{fill:none;stroke:#4FE3F0;stroke-width:2;stroke-dasharray:1;stroke-dashoffset:1;transform:rotate(-90deg);transform-origin:center;transform-box:fill-box;animation:draw 1s .9s cubic-bezier(.4,0,.2,1) forwards}
+.emblem rect{fill:#4FE3F0}
+.cross{transform-box:fill-box;transform-origin:center;animation:emblemPop .5s 1.3s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes emblemPop{from{transform:scale(0)}to{transform:scale(1)}}
+.words{position:absolute;left:0;right:0;top:calc(44% + 96px);text-align:center;padding:0 20px}
+.brand-w{display:block;white-space:nowrap;font:600 clamp(1.9rem,6vw,3.1rem)/1.1 var(--serif);color:#F2FBFA;opacity:0;animation:trackIn 1.2s 1.7s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes trackIn{from{opacity:0;letter-spacing:.26em}to{opacity:1;letter-spacing:.01em}}
+.tag{display:block;margin-top:10px;color:#A9CDCB;font:400 1rem var(--sans);opacity:0;animation:introFade .7s 2.4s ease forwards}
+@keyframes introFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.prog{position:absolute;left:50%;bottom:11vh;width:min(60vw,260px);height:2px;margin-left:calc(min(60vw,260px) / -2);background:rgba(255,255,255,.14);overflow:hidden;border-radius:2px}
+.prog::after{content:"";position:absolute;inset:0;background:#4FE3F0;transform:scaleX(0);transform-origin:left;animation:introFill 2.9s .2s cubic-bezier(.5,0,.3,1) forwards}
+@keyframes introFill{to{transform:scaleX(1)}}
+html.intro{--intro:3.4s}
+html.intro .hero .lead{animation-delay:calc(var(--intro) + .12s)}
+html.intro .hero .btns{animation-delay:calc(var(--intro) + .24s)}
+html.intro .w>span{animation-delay:calc(var(--intro) + .15s + var(--i) * .09s)}
+html.intro .stage .board{animation-delay:calc(var(--intro) + .3s),calc(var(--intro) + 1.3s)}
+html.intro .stage .btn:not(.alt){animation-delay:calc(var(--intro) + 2s)}
+nav a.sos{color:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) nav a.sos,:root:not([data-theme="light"]) .fab{color:#2a0805}}
+:root[data-theme="dark"] nav a.sos,:root[data-theme="dark"] .fab{color:#2a0805}
+.t{position:relative;padding-bottom:14px}
+.t::after{content:"";position:absolute;left:0;bottom:0;width:56px;height:3px;border-radius:3px;background:var(--brand);transform-origin:left}
+.js .t::after{transform:scaleX(0);transition:transform .8s .3s cubic-bezier(.2,.8,.2,1)}
+.js .t.in::after{transform:scaleX(1)}
+.rot{margin:-12px 0 24px;min-height:1.6em;font-size:1.05rem;color:var(--muted);animation:rise .8s .18s both}
+.rot b{color:var(--brand);font-weight:600}
+.caret{display:inline-block;width:2px;height:1.1em;margin-left:3px;vertical-align:-.2em;background:var(--brand);animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+html.intro .hero .rot{animation-delay:calc(var(--intro) + .18s)}
+.burger{display:none;width:44px;height:44px;border:0;background:none;color:var(--ink);cursor:pointer;place-content:center;gap:5px}
+.burger span{display:block;width:24px;height:2px;background:currentColor;border-radius:2px;transition:transform .35s,opacity .25s}
+.burger[aria-expanded=true] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger[aria-expanded=true] span:nth-child(2){opacity:0}
+.burger[aria-expanded=true] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media (max-width:900px){
+.burger{display:grid}
+nav{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;padding:8px 20px 20px;background:var(--bg);border-bottom:1px solid var(--line);opacity:0;visibility:hidden;transform:translateY(-10px);transition:opacity .3s,transform .3s,visibility 0s .3s}
+nav.open{opacity:1;visibility:visible;transform:none;transition:opacity .3s,transform .3s}
+nav a{padding:14px 0;font-size:1.1rem}
+nav a.sos{justify-content:center;margin-top:8px;padding:14px}
+nav.open a{animation:rise .5s both}
+nav.open a:nth-child(2){animation-delay:.05s}nav.open a:nth-child(3){animation-delay:.1s}nav.open a:nth-child(4){animation-delay:.15s}
+}
+.fab{position:fixed;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);z-index:9;display:flex;align-items:center;gap:10px;padding:14px 20px;border-radius:99px;background:var(--emerg);color:#fff;font-weight:600;text-decoration:none;box-shadow:0 12px 28px -10px var(--emerg);opacity:0;pointer-events:none;transform:translateY(120px) scale(.8);transition:transform .5s cubic-bezier(.3,1.5,.5,1),opacity .3s}
+.fab.show{opacity:1;pointer-events:auto;transform:none}
+.fab::after{content:"";position:absolute;inset:0;border-radius:inherit;border:2px solid var(--emerg);opacity:0}
+.fab.show::after{animation:ringOut 2s infinite}
+.fab.show svg{animation:wiggle 2.6s infinite}
+@keyframes ringOut{from{transform:scale(1);opacity:.7}to{transform:scale(1.5);opacity:0}}
+@keyframes wiggle{0%,60%,100%{transform:none}65%{transform:rotate(-16deg)}75%{transform:rotate(14deg)}85%{transform:rotate(-8deg)}}
+.team{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}
+.doc{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:28px 20px;text-align:center;transform:perspective(800px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--ty,0px));transition:transform .2s,border-color .25s,box-shadow .25s}
+.doc:hover{--ty:-4px;border-color:var(--brand);box-shadow:0 16px 30px -18px var(--brand)}
+.doc h3{font:600 1.15rem var(--serif);margin:0 0 2px}
+.doc .role{margin:0;color:var(--brand);font-weight:600}
+.doc .days{margin:6px 0 14px;color:var(--muted);font-size:.9rem}
+.js .team:not(.in) .doc{opacity:0}
+.js .team.in .doc{animation:pop .6s calc(var(--i) * 90ms) cubic-bezier(.2,.8,.2,1) backwards}
+.av{position:relative;display:grid;place-items:center;width:84px;height:84px;margin:0 auto 16px;border-radius:50%;background:var(--tint);color:var(--brand);font:600 1.5rem var(--serif)}
+.av::before{content:"";position:absolute;inset:-5px;border-radius:50%;background:conic-gradient(var(--brand),transparent 45%,var(--brand));-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2px));mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2px));animation:spin 4s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.plans{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.plans .track{display:flex;gap:16px;width:max-content;padding-right:16px;animation:marquee 34s linear infinite}
+.plans:hover .track{animation-play-state:paused}
+.chip{padding:14px 28px;border:1px solid var(--line);border-radius:99px;background:var(--surface);font:600 1.05rem var(--serif);white-space:nowrap}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.chk{display:flex;gap:10px;align-items:flex-start;font-weight:400;margin:0}
+.chk input{width:18px;height:18px;padding:0;flex:none;margin-top:4px;accent-color:var(--brand)}
+.tick{display:block;width:56px;height:56px;margin-bottom:10px;fill:none;stroke:var(--low);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.tick circle,.tick path{stroke-dasharray:1;stroke-dashoffset:1}
+#ok:not([hidden]) .tick circle{animation:tickDraw .7s forwards}
+#ok:not([hidden]) .tick path{animation:tickDraw .5s .55s forwards}
+@keyframes tickDraw{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.plans{overflow-x:auto}.tick circle,.tick path{stroke-dashoffset:0}}
+main:focus{outline:none}
+body[data-page] .page:not(.active){display:none}
+body[data-page="login"] header,body[data-page="login"] footer,body[data-page="login"] .fab,body[data-page="login"] #progress{display:none}
+.lg{--c1:var(--ink);--c2:var(--brand);background:linear-gradient(100deg,var(--c1) 42%,var(--c2) 50%,var(--c1) 58%) 0 0/250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 5s linear infinite}
+@keyframes shine{from{background-position:100% 0}to{background-position:-50% 0}}
+.plus{display:inline-block;margin-left:.12em;color:var(--brand);font-weight:700;transform-origin:50% 56%;animation:plusSpin 4.5s cubic-bezier(.6,0,.3,1) infinite}
+@keyframes plusSpin{0%,55%{transform:rotate(0) scale(1)}70%{transform:rotate(180deg) scale(1.3)}85%,100%{transform:rotate(360deg) scale(1)}}
+.logo:hover .plus{animation-duration:1.2s}
+.brand-w b{display:inline-block;color:#4FE3F0;animation:plusPop .8s 2.3s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes plusPop{from{transform:rotate(-180deg) scale(0)}to{transform:none}}
+nav a[data-nav]{position:relative}
+nav a[data-nav]::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:2px;background:var(--brand);transform:scaleX(0);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+nav a[data-nav]:hover::after,nav a[data-nav].cur::after{transform:scaleX(1)}
+nav a.cur{color:var(--ink)}
+.who{color:var(--muted);font-size:.9rem;white-space:nowrap}
+.authbtn{background:none;border:1.5px solid var(--line);color:var(--ink);padding:7px 14px;border-radius:8px;font:600 .9rem var(--sans);cursor:pointer;transition:border-color .2s}
+.authbtn:hover{border-color:var(--brand)}
+@media (max-width:900px){nav a[data-nav]::after{display:none}nav a.cur{color:var(--brand)}.who{padding:10px 0 4px}.authbtn{align-self:flex-start}}
+#wipe{display:none;position:fixed;inset:0;z-index:90;overflow:hidden}
+#wipe.on{display:block}
+.wl{position:absolute;inset:0;transform:translateX(-101%)}
+.wa{background:#4FE3F0}.wb{background:#062F36}
+.wm{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:14px;opacity:0;color:#F2FBFA;font:600 1.6rem var(--serif)}
+.login{min-height:100vh;display:grid;grid-template-columns:1.1fr .9fr}
+.login-l{--brand:#4FE3F0;--line:#1B5C66;position:relative;overflow:hidden;background:#062F36;color:#F2FBFA;display:flex;flex-direction:column;justify-content:center;padding:64px 56px 150px}
+.login-l .lg{--c1:#F2FBFA;--c2:#4FE3F0}
+.lbrand{position:relative;font:600 clamp(3.4rem,8vw,6.2rem)/1 var(--serif);margin-bottom:22px;animation:rise .9s calc(var(--intro,0s) + .1s) cubic-bezier(.2,.8,.2,1) both}
+.llead{position:relative;max-width:40ch;color:#A9CDCB;font-size:1.1rem;margin:0;animation:rise .9s calc(var(--intro,0s) + .25s) cubic-bezier(.2,.8,.2,1) both}
+.fps{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.fps i{position:absolute;bottom:-50px;width:var(--s);height:var(--s);color:#4FE3F0;opacity:0;background:linear-gradient(currentColor,currentColor) center/100% 24% no-repeat,linear-gradient(currentColor,currentColor) center/24% 100% no-repeat;animation:floatUp var(--t) var(--d) linear infinite}
+@keyframes floatUp{0%{transform:translateY(0) rotate(0);opacity:0}12%{opacity:.5}100%{transform:translateY(-115vh) rotate(180deg);opacity:0}}
+.login-r{display:grid;place-items:center;padding:32px 20px;background:var(--bg)}
+.lcard{width:100%;max-width:400px;animation:rise .9s calc(var(--intro,0s) + .2s) cubic-bezier(.2,.8,.2,1) both}
+.lcard h1{font:600 1.9rem/1.15 var(--serif);max-width:none;margin:0 0 6px}
+.lcard .sub{margin-bottom:22px}
+.pw{position:relative}.pw input{padding-right:88px}
+.eye{position:absolute;right:6px;top:50%;transform:translateY(-50%);background:none;border:0;color:var(--brand);font:600 .875rem var(--sans);padding:8px;cursor:pointer}
+.btn.full{width:100%;text-align:center}
+.lcard .btn.alt{margin-top:4px}
+.lmsg{min-height:1.4em;margin:12px 0 4px;font-size:.9rem;color:var(--muted)}
+.lnote{font-size:.85rem;color:var(--muted);margin:18px 0 0}
+.btn.loading{pointer-events:none;opacity:.85}
+.btn.loading::before{content:"";display:inline-block;width:15px;height:15px;margin-right:8px;vertical-align:-3px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .7s linear infinite}
+@keyframes shake{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+.shake{animation:shake .4s}
+@media (max-width:860px){.login{grid-template-columns:1fr}.login-l{padding:40px 24px 120px}.login-r{padding:28px 20px 56px}}
+@media (prefers-reduced-motion:reduce){.ecg .pulse{stroke-dasharray:none;opacity:.5}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body><div id="intro" aria-hidden="true"><i class="half top"></i><i class="half bot"></i>
+<div class="mark"><i class="dawn"></i>
+<svg class="ie" viewBox="0 0 1440 120" preserveAspectRatio="none"><path pathLength="1" d="M0 60H600L660 60 694 60 708 22 724 102 740 34 754 60H1440"/></svg>
+<svg class="emblem" viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" pathLength="1"/><g class="cross"><rect x="53" y="30" width="14" height="60" rx="3"/><rect x="30" y="53" width="60" height="14" rx="3"/></g></svg>
+<div class="words"><span class="brand-w">Cuidar <b>+</b></span><span class="tag">Hospital e pronto-socorro 24 horas</span></div>
+<div class="prog"></div></div></div>
+<div id="wipe" aria-hidden="true"><i class="wl wa"></i><i class="wl wb"></i><div class="wm"><svg viewBox="0 0 120 120" width="72" height="72"><g fill="#4FE3F0"><rect x="53" y="22" width="14" height="76" rx="3"/><rect x="22" y="53" width="76" height="14" rx="3"/></g></svg><span>Cuidar +</span></div></div>
+<a class="skip" href="#main">Ir para o conteúdo</a><div id="progress" aria-hidden="true"></div>
+<header><div class="wrap bar-h">
+  <a class="logo" href="#/inicio" aria-label="Cuidar +, início"><span class="lg">Cuidar</span><span class="plus" aria-hidden="true">+</span></a>
+  <nav id="menu" aria-label="Principal">
+    <a data-nav="inicio" href="#/inicio">Início</a>
+    <a data-nav="especialidades" href="#/especialidades">Especialidades</a>
+    <a data-nav="atendimento" href="#/atendimento">Atendimento</a>
+    <a data-nav="agendar" href="#/agendar">Agendar</a>
+    <a class="sos" href="tel:+551130000192">Emergência 24h</a>
+    <span class="who" id="who"></span><button type="button" class="authbtn" id="auth">Sair</button>
+  </nav>
+  <button type="button" class="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+</div></header>
+
+<main id="main" tabindex="-1"><div class="orbs" aria-hidden="true"><i></i><i></i></div>
+<div class="page" data-page="login"><div class="login">
+  <div class="login-l">
+    <div class="fps" id="fps" aria-hidden="true"></div>
+    <svg class="ecg ecg-wide" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true"><path class="track" pathLength="1" d="M0 60H180L200 60 214 30 230 96 246 44 258 60H520L540 60 552 38 566 88 580 60H860L880 60 894 22 912 100 930 40 944 60H1200L1220 60 1232 40 1246 86 1260 60H1440"/><path class="pulse" pathLength="1" d="M0 60H180L200 60 214 30 230 96 246 44 258 60H520L540 60 552 38 566 88 580 60H860L880 60 894 22 912 100 930 40 944 60H1200L1220 60 1232 40 1246 86 1260 60H1440"/></svg>
+    <div class="lbrand" aria-label="Cuidar +"><span class="lg">Cuidar</span><span class="plus" aria-hidden="true">+</span></div>
+    <p class="llead">Pronto-socorro 24h, maternidade, exames e consultas. Entre para agendar e acompanhar seu atendimento.</p>
+  </div>
+  <div class="login-r"><div class="lcard">
+    <h1>Entrar no Cuidar +</h1>
+    <p class="sub">Use seu e-mail e senha para continuar.</p>
+    <form id="login-form" novalidate>
+      <div class="field"><label for="l-email">E-mail</label><input id="l-email" type="email" autocomplete="email" aria-describedby="err-l-email"><p class="err" id="err-l-email" role="alert"></p></div>
+      <div class="field"><label for="l-pass">Senha</label><div class="pw"><input id="l-pass" type="password" autocomplete="current-password" aria-describedby="err-l-pass"><button type="button" class="eye" id="l-eye" aria-pressed="false">Mostrar</button></div><p class="err" id="err-l-pass" role="alert"></p></div>
+      <button class="btn full" id="l-btn" type="submit">Entrar</button>
+    </form>
+    <p class="lmsg" id="l-msg" role="status"></p>
+    <button type="button" class="btn alt full" id="l-guest">Continuar como visitante</button>
+    <p class="lnote">Ambiente demonstrativo: use qualquer e-mail válido e uma senha com 6 ou mais caracteres. Nenhum dado sai do seu navegador. <a href="#" id="l-forgot" class="link">Esqueci minha senha</a></p>
+  </div></div>
+</div></div>
+
+<div class="page" data-page="inicio">
+<div class="stage"><svg class="ecg ecg-wide" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true"><path class="track" pathLength="1" d="M0 60H180L200 60 214 30 230 96 246 44 258 60H520L540 60 552 38 566 88 580 60H860L880 60 894 22 912 100 930 40 944 60H1200L1220 60 1232 40 1246 86 1260 60H1440"/><path class="pulse" pathLength="1" d="M0 60H180L200 60 214 30 230 96 246 44 258 60H520L540 60 552 38 566 88 580 60H860L880 60 894 22 912 100 930 40 944 60H1200L1220 60 1232 40 1246 86 1260 60H1440"/></svg>
+<div class="wrap hero">
+  <div>
+    <h1>Cuidado completo, a qualquer hora.</h1>
+    <p class="lead">Pronto-socorro aberto 24 horas, maternidade, exames e mais de 30 especialidades no mesmo endereço. Veja agora quanto tempo de espera cada unidade tem e agende sua consulta em minutos.</p>
+    <p class="rot" aria-hidden="true">Aberto 24 horas para <b id="rot">emergências</b><span class="caret"></span></p>
+    <div class="btns"><a class="btn" href="#/agendar">Agendar consulta</a><a class="btn alt" href="#/especialidades">Ver especialidades</a></div>
+  </div>
+  <aside class="board" aria-labelledby="board-t">
+    <h2 id="board-t">Espera estimada agora</h2>
+    <span id="stamp"></span>
+    <ul id="units"></ul>
+  </aside>
+</div></div>
+
+<div class="statsbar"><ul id="stats" class="wrap stats-grid trg"></ul></div>
+
+</div>
+<div class="page" data-page="especialidades">
+<section id="especialidades"><div class="wrap">
+  <h2 class="t">Especialidades</h2>
+  <p class="sub">Encontre o atendimento que você procura e veja quando há a próxima vaga.</p>
+  <label for="search" class="sr" style="position:absolute;left:-9999px">Buscar especialidade</label>
+  <input id="search" class="search" type="search" placeholder="Buscar: coração, criança, pele…" autocomplete="off">
+  <ul id="spec-list"></ul>
+</div></section>
+
+<section id="equipe"><div class="wrap">
+  <h2 class="t">Corpo clínico</h2>
+  <p class="sub">Especialistas que conhecem você pelo nome. Escolha um profissional e agende em um toque.</p>
+  <ul id="team" class="team trg"></ul>
+</div></section>
+
+<section class="plans-sec"><div class="wrap"><h2 class="t">Convênios atendidos</h2></div>
+  <div class="plans"><div class="track" id="plans"></div></div>
+</section>
+
+</div>
+<div class="page" data-page="atendimento">
+<section id="atendimento"><div class="wrap">
+  <h2 class="t">Como é o atendimento no pronto-socorro</h2>
+  <p class="sub">Quatro etapas, com acompanhamento da equipe em cada uma.</p>
+  <ol id="steps" class="steps trg"></ol>
+</div></section>
+
+<section id="duvidas"><div class="wrap">
+  <h2 class="t">Dúvidas frequentes</h2>
+  <div id="faq" class="faq"></div>
+</div></section>
+</div>
+<div class="page" data-page="agendar">
+<section id="agendar"><div class="wrap book">
+  <div>
+    <h2 class="t">Agende sua consulta</h2>
+    <p class="sub">Preencha os dados ao lado. Nossa central confirma o horário por telefone em até 2 horas úteis.</p>
+    <p class="sub">Sintomas graves, como dor no peito, falta de ar ou desmaio? Não espere: ligue 192 ou venha direto ao pronto-socorro.</p>
+  </div>
+  <div>
+    <form id="book" novalidate>
+      <div class="field"><label for="name">Nome completo</label><input id="name" name="name" autocomplete="name" aria-describedby="err-name"><p class="err" id="err-name" role="alert"></p></div>
+      <div class="field"><label for="phone">Telefone com DDD</label><input id="phone" name="phone" type="tel" autocomplete="tel" aria-describedby="err-phone"><p class="err" id="err-phone" role="alert"></p></div>
+      <div class="field"><label for="specialtyId">Especialidade</label><select id="specialtyId" name="specialtyId" aria-describedby="err-specialtyId"><option value="">Selecione</option></select><p class="err" id="err-specialtyId" role="alert"></p></div>
+      <div class="field"><label for="date">Data desejada</label><input id="date" name="date" type="date" aria-describedby="err-date"><p class="err" id="err-date" role="alert"></p></div>
+      <fieldset><legend>Período</legend><div class="radios"><label><input type="radio" name="period" value="manha" checked> Manhã</label><label><input type="radio" name="period" value="tarde"> Tarde</label></div></fieldset>
+      <div class="field"><label class="chk"><input type="checkbox" name="consent" id="consent" aria-describedby="err-consent"> Autorizo o Cuidar + a usar meus dados para entrar em contato, conforme a LGPD.</label><p class="err" id="err-consent" role="alert"></p></div>
+      <button class="btn" type="submit">Solicitar agendamento</button>
+    </form>
+    <div id="ok" tabindex="-1" hidden>
+      <svg class="tick" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24" pathLength="1"/><path pathLength="1" d="M15 27l8 8 14-16"/></svg>
+      <h3>Solicitação enviada, <span id="ok-name"></span>.</h3>
+      <p id="ok-detail"></p>
+      <p>Guarde seu protocolo:</p><span class="code" id="ok-code"></span><br>
+      <button class="btn alt" type="button" id="again">Fazer outro agendamento</button>
+    </div>
+  </div>
+</div></section>
+</div>
+</main>
+
+<footer><div class="wrap fcols">
+  <div><strong>Pronto-socorro 24h</strong>(11) 3000-0192<br>Av. das Acácias, 1200, São Paulo</div>
+  <div><strong>Central de agendamento</strong>(11) 3000-0100<br>Segunda a sábado, 7h às 20h</div>
+  <div><strong>Site demonstrativo</strong>Hospital fictício. Tempos de espera e vagas são simulados e não representam um serviço real.</div>
+</div><div class="wrap fbot">© 2026 Cuidar +. Em caso de emergência, ligue 192 (SAMU).</div></footer>
+<a class="fab" id="fab" href="tel:+551130000192"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"/></svg>Emergência</a>
+
+<script>
+"use strict";
+const specialties = [
+    { id: "clinica", name: "Clínica geral", summary: "Porta de entrada para exames e encaminhamentos.", nextSlotDays: 1 },
+    { id: "cardio", name: "Cardiologia", summary: "Check-up do coração, arritmias e hipertensão.", nextSlotDays: 2 },
+    { id: "pedia", name: "Pediatria", summary: "Bebês, crianças e adolescentes, do pré-natal à alta.", nextSlotDays: 0 },
+    { id: "gineco", name: "Ginecologia e Obstetrícia", summary: "Pré-natal, parto e saúde da mulher.", nextSlotDays: 2 },
+    { id: "orto", name: "Ortopedia", summary: "Lesões, coluna, joelho e reabilitação.", nextSlotDays: 3 },
+    { id: "onco", name: "Oncologia", summary: "Diagnóstico e tratamento com equipe multidisciplinar.", nextSlotDays: 3 },
+    { id: "derma", name: "Dermatologia", summary: "Pele, cabelo e unhas, com mapeamento de pintas.", nextSlotDays: 4 },
+    { id: "neuro", name: "Neurologia", summary: "Enxaqueca, epilepsia e distúrbios do movimento.", nextSlotDays: 6 },
+];
+const units = [
+    { name: "Pronto-socorro adulto", minutes: 25 },
+    { name: "Pronto-socorro infantil", minutes: 12 },
+    { name: "Maternidade", minutes: 8 },
+    { name: "Exames de imagem", minutes: 48 },
+];
+const $ = (sel) => {
+    const el = document.querySelector(sel);
+    if (!el)
+        throw new Error("Elemento não encontrado: " + sel);
+    return el;
+};
+const levelOf = (m) => m < 20 ? { cls: "low", label: "Espera curta" }
+    : m < 45 ? { cls: "mid", label: "Espera moderada" }
+        : { cls: "high", label: "Espera longa" };
+const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+let built = false;
+function tween(el, from, to) {
+    if (reduce || from === to) {
+        el.textContent = to + " min";
+        return;
+    }
+    const t0 = performance.now();
+    const step = (t) => {
+        const p = Math.min(1, (t - t0) / 800);
+        el.textContent = Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3))) + " min";
+        if (p < 1)
+            requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+}
+function renderUnits() {
+    const ul = $("#units");
+    if (!built) {
+        ul.innerHTML = units.map((u) => `<li class="unit">
+      <div class="unit-top"><span class="unit-name">${u.name}</span><span class="unit-min">0 min</span></div>
+      <div class="bar" aria-hidden="true"><i style="width:0%"></i></div>
+      <span class="unit-lvl"></span></li>`).join("");
+        void ul.offsetWidth;
+        built = true;
+    }
+    ul.querySelectorAll(".unit").forEach((li, i) => {
+        const u = units[i];
+        const l = levelOf(u.minutes);
+        li.className = "unit " + l.cls;
+        const min = li.querySelector(".unit-min");
+        tween(min, Number(min.dataset.v ?? 0), u.minutes);
+        min.dataset.v = String(u.minutes);
+        li.querySelector(".bar i").style.width = Math.min(100, Math.round((u.minutes / 90) * 100)) + "%";
+        li.querySelector(".unit-lvl").textContent = l.label;
+    });
+    $("#stamp").textContent = "Atualizado às " + new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+}
+const stats = [
+    { value: 24, suffix: "h", label: "Pronto-socorro sempre aberto" },
+    { value: 35, suffix: "+", label: "Especialidades médicas" },
+    { value: 320, suffix: "", label: "Leitos, 60 deles de UTI" },
+    { value: 4800, suffix: "", label: "Atendimentos por mês" },
+];
+const steps = [
+    { title: "Chegada e cadastro", text: "Você é recebido na entrada e o cadastro é feito em poucos minutos." },
+    { title: "Triagem", text: "Um enfermeiro classifica a gravidade em até 5 minutos. Casos graves passam direto." },
+    { title: "Atendimento médico", text: "Consulta, exames e medicação no mesmo andar, com a equipe acompanhando cada etapa." },
+    { title: "Alta ou internação", text: "Você sai com orientações por escrito ou vai ao leito, com a família informada." },
+];
+const faq = [
+    { q: "Preciso de encaminhamento para agendar?", a: "Na maioria das especialidades, não. Alguns convênios pedem guia, e a central avisa na confirmação." },
+    { q: "Quais convênios vocês aceitam?", a: "Atendemos os principais convênios e também particular. Ligue para a central para confirmar o seu plano." },
+    { q: "Posso ir com acompanhante?", a: "Sim, conforme a rotina de cada unidade. Crianças, idosos e gestantes sempre podem ter acompanhante." },
+    { q: "Como recebo os resultados dos exames?", a: "Pelo portal do paciente e por e-mail, em geral no mesmo dia para exames de rotina." },
+];
+const fmt = (n, s) => n.toLocaleString("pt-BR") + s;
+function renderContent() {
+    $("#stats").innerHTML = stats.map((s) => `<li class="stat"><b data-count="${s.value}" data-suffix="${s.suffix}">${fmt(s.value, s.suffix)}</b><span>${s.label}</span></li>`).join("");
+    $("#steps").innerHTML = steps.map((s) => `<li><h3>${s.title}</h3><p>${s.text}</p></li>`).join("");
+    $("#faq").innerHTML = faq.map((f, i) => `<div class="qa"><h3><button type="button" class="q" id="q${i}" aria-expanded="false" aria-controls="a${i}">${f.q}<span class="pm" aria-hidden="true"></span></button></h3><div class="a" id="a${i}" role="region" aria-labelledby="q${i}"><div><p>${f.a}</p></div></div></div>`).join("");
+    $("#faq").addEventListener("click", (ev) => {
+        const btn = ev.target.closest(".q");
+        if (!btn)
+            return;
+        const open = btn.getAttribute("aria-expanded") !== "true";
+        btn.setAttribute("aria-expanded", String(open));
+        btn.closest(".qa")?.classList.toggle("open", open);
+    });
+}
+function countUp(el) {
+    const to = Number(el.dataset.count);
+    const sfx = el.dataset.suffix ?? "";
+    const t0 = performance.now();
+    const step = (t) => {
+        const p = Math.min(1, (t - t0) / 1600);
+        el.textContent = fmt(Math.round(to * (1 - Math.pow(1 - p, 4))), sfx);
+        if (p < 1)
+            requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+}
+function setupReveal() {
+    if (reduce || !("IntersectionObserver" in window))
+        return;
+    document.documentElement.classList.add("js");
+    const rv = document.querySelectorAll("section .t, section .sub, .book > div, .fcols > div, #faq .qa");
+    const trg = document.querySelectorAll(".trg");
+    trg.forEach((t) => t.querySelectorAll("[data-count]").forEach((c) => { c.textContent = fmt(0, c.dataset.suffix ?? ""); }));
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+            if (!e.isIntersecting)
+                return;
+            const t = e.target;
+            t.classList.add("in");
+            t.querySelectorAll("[data-count]").forEach(countUp);
+            io.unobserve(t);
+        });
+    }, { threshold: 0.2 });
+    rv.forEach((el, i) => { el.classList.add("rv"); el.style.transitionDelay = (i % 3) * 90 + "ms"; io.observe(el); });
+    trg.forEach((el) => io.observe(el));
+}
+function setupHero() {
+    if (reduce)
+        return;
+    const h1 = $(".hero h1");
+    const text = h1.textContent ?? "";
+    h1.setAttribute("aria-label", text);
+    h1.classList.add("split");
+    h1.innerHTML = text.split(" ").map((w, i) => `<span class="w" aria-hidden="true"><span style="--i:${i}">${w}</span></span>`).join(" ");
+    const stage = $(".stage");
+    stage.addEventListener("pointermove", (e) => {
+        const r = stage.getBoundingClientRect();
+        stage.style.setProperty("--mx", e.clientX - r.left + "px");
+        stage.style.setProperty("--my", e.clientY - r.top + "px");
+    });
+}
+const doctors = [
+    { name: "Dra. Helena Duarte", role: "Cardiologia", days: "Segunda, quarta e sexta", specId: "cardio" },
+    { name: "Dr. Marcelo Tavares", role: "Ortopedia", days: "Terça e quinta", specId: "orto" },
+    { name: "Dra. Beatriz Nogueira", role: "Pediatria", days: "Segunda a sexta", specId: "pedia" },
+    { name: "Dr. Rafael Lima", role: "Neurologia", days: "Quarta e sexta", specId: "neuro" },
+];
+const plans = ["VidaPlena", "Saúde Total", "Nova Saúde", "Prime Care", "Clínica Unida", "Bem Estar", "Horizonte Saúde", "Amparo"];
+const canHover = window.matchMedia("(hover: hover)").matches;
+const initials = (n) => n.replace(/^Dra?\.\s*/, "").split(" ").map((p) => p[0]).slice(0, 2).join("");
+function renderTeam() {
+    $("#team").innerHTML = doctors.map((d, i) => `<li class="doc tilt" style="--i:${i}"><span class="av" aria-hidden="true"><b>${initials(d.name)}</b></span><h3>${d.name}</h3><p class="role">${d.role}</p><p class="days">${d.days}</p><button type="button" class="link" data-id="${d.specId}">Agendar consulta</button></li>`).join("");
+    const chips = (hide) => plans.map((p) => `<span class="chip"${hide ? ' aria-hidden="true"' : ""}>${p}</span>`).join("");
+    $("#plans").innerHTML = chips(false) + chips(true);
+}
+function setupTilt() {
+    if (reduce || !canHover)
+        return;
+    document.addEventListener("pointermove", (e) => {
+        const el = e.target.closest(".tilt");
+        if (!el)
+            return;
+        const r = el.getBoundingClientRect();
+        el.style.setProperty("--ry", (((e.clientX - r.left) / r.width) - 0.5) * 10 + "deg");
+        el.style.setProperty("--rx", (0.5 - ((e.clientY - r.top) / r.height)) * 10 + "deg");
+    });
+    document.addEventListener("pointerout", (e) => {
+        const el = e.target.closest(".tilt");
+        if (el && !el.contains(e.relatedTarget)) {
+            el.style.setProperty("--rx", "0deg");
+            el.style.setProperty("--ry", "0deg");
+        }
+    });
+}
+function setupMagnet() {
+    if (reduce || !canHover)
+        return;
+    document.querySelectorAll(".btn, nav .sos").forEach((b) => {
+        b.addEventListener("pointermove", (e) => {
+            const r = b.getBoundingClientRect();
+            b.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * 0.2}px, ${(e.clientY - r.top - r.height / 2) * 0.3}px)`;
+        });
+        b.addEventListener("pointerleave", () => { b.style.transform = ""; });
+    });
+}
+function setupMenu() {
+    const btn = $(".burger");
+    const nav = $("#menu");
+    const set = (open) => {
+        nav.classList.toggle("open", open);
+        btn.setAttribute("aria-expanded", String(open));
+        btn.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+    };
+    btn.addEventListener("click", () => set(btn.getAttribute("aria-expanded") !== "true"));
+    nav.addEventListener("click", (e) => { if (e.target.closest("a, button"))
+        set(false); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape")
+        set(false); });
+}
+function setupTyper() {
+    if (reduce)
+        return;
+    const el = $("#rot");
+    const words = ["emergências", "partos", "exames de imagem", "consultas"];
+    let w = 0, c = words[0].length, dir = -1;
+    const tick = () => {
+        const word = words[w];
+        el.textContent = word.slice(0, c);
+        let delay = dir === 1 ? 70 : 35;
+        if (dir === 1 && c === word.length) {
+            dir = -1;
+            delay = 1600;
+        }
+        else if (dir === -1 && c === 0) {
+            dir = 1;
+            w = (w + 1) % words.length;
+            delay = 300;
+        }
+        c += dir;
+        setTimeout(tick, delay);
+    };
+    setTimeout(tick, 5600);
+}
+const PAGES = ["login", "inicio", "especialidades", "atendimento", "agendar"];
+const TITLES = { login: "Entrar", inicio: "Início", especialidades: "Especialidades", atendimento: "Atendimento", agendar: "Agendar consulta" };
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+let session = null;
+try {
+    const raw = sessionStorage.getItem("cuidar:session");
+    const p = raw ? JSON.parse(raw) : null;
+    if (p && typeof p.name === "string")
+        session = p;
+}
+catch {
+    session = null;
+}
+const saveSession = () => {
+    try {
+        if (session)
+            sessionStorage.setItem("cuidar:session", JSON.stringify(session));
+        else
+            sessionStorage.removeItem("cuidar:session");
+    }
+    catch { /* armazenamento indisponível: a sessão vale só nesta aba */ }
+};
+let current = null;
+let busy = false;
+let target = null;
+let pendingFocus = null;
+const fromHash = () => {
+    const h = location.hash.replace(/^#\/?/, "");
+    return PAGES.includes(h) ? h : null;
+};
+const wanted = () => {
+    const p = target ?? (session ? "inicio" : "login");
+    return p !== "login" && !session ? "login" : p;
+};
+const syncHash = (p) => {
+    try {
+        if (location.hash !== "#/" + p)
+            history.replaceState(null, "", "#/" + p);
+    }
+    catch { /* ignora */ }
+};
+function swap(page) {
+    if (current !== null && performance.now() > 4300)
+        document.documentElement.classList.remove("intro");
+    document.querySelectorAll(".page").forEach((p) => p.classList.toggle("active", p.dataset.page === page));
+    document.body.dataset.page = page;
+    document.title = "Cuidar + | " + TITLES[page];
+    document.querySelectorAll("nav a[data-nav]").forEach((a) => {
+        const on = a.dataset.nav === page;
+        a.classList.toggle("cur", on);
+        if (on)
+            a.setAttribute("aria-current", "page");
+        else
+            a.removeAttribute("aria-current");
+    });
+    $("#who").textContent = session ? (session.guest ? "Visitante" : "Olá, " + session.name) : "";
+    $("#auth").textContent = session?.guest ? "Entrar" : "Sair";
+    if (page === "inicio") {
+        built = false;
+        renderUnits();
+    }
+    window.scrollTo(0, 0);
+    const f = pendingFocus;
+    pendingFocus = null;
+    if (f)
+        $(f).focus({ preventScroll: true });
+    else if (current !== null)
+        $("#main").focus({ preventScroll: true });
+}
+async function wipe(mid) {
+    if (reduce || !("animate" in Element.prototype)) {
+        mid();
+        return;
+    }
+    const el = $("#wipe");
+    const [a, b] = Array.from(el.querySelectorAll(".wl"));
+    const mark = $("#wipe .wm");
+    const slide = (n, from, to, delay) => n.animate([{ transform: `translateX(${from})` }, { transform: `translateX(${to})` }], { duration: 520, delay, easing: "cubic-bezier(.76,0,.24,1)", fill: "forwards" }).finished;
+    const pop = (from, to, d, delay) => mark.animate([from, to], { duration: d, delay, easing: "cubic-bezier(.2,.8,.2,1)", fill: "forwards" }).finished;
+    el.classList.add("on");
+    await Promise.all([
+        slide(a, "-101%", "0%", 0), slide(b, "-101%", "0%", 110),
+        pop({ opacity: 0, transform: "scale(.6) rotate(-90deg)" }, { opacity: 1, transform: "scale(1) rotate(0deg)" }, 500, 330),
+    ]);
+    mid();
+    await sleep(150);
+    await pop({ opacity: 1, transform: "scale(1) rotate(0deg)" }, { opacity: 0, transform: "scale(1.25) rotate(90deg)" }, 250, 0);
+    await Promise.all([slide(b, "0%", "101%", 0), slide(a, "0%", "101%", 110)]);
+    [a, b, mark].forEach((n) => n.getAnimations().forEach((x) => x.cancel()));
+    el.classList.remove("on");
+}
+async function route() {
+    if (busy)
+        return;
+    const page = wanted();
+    if (page === current) {
+        syncHash(page);
+        return;
+    }
+    busy = true;
+    try {
+        if (current === null)
+            swap(page);
+        else
+            await wipe(() => swap(page));
+        current = page;
+        syncHash(page);
+    }
+    finally {
+        busy = false;
+    }
+    if (wanted() !== current)
+        void route();
+}
+function navigate(p) {
+    target = p;
+    try {
+        location.hash = "#/" + p;
+    }
+    catch { /* ignora */ }
+    void route();
+}
+function setupRouter() {
+    target = fromHash();
+    window.addEventListener("hashchange", () => {
+        const p = fromHash();
+        if (p) {
+            target = p;
+            void route();
+        }
+    });
+    $("#auth").addEventListener("click", () => { session = null; saveSession(); navigate("login"); });
+    void route();
+}
+function setupLogin() {
+    const form = $("#login-form");
+    const email = $("#l-email");
+    const pass = $("#l-pass");
+    const btn = $("#l-btn");
+    const eye = $("#l-eye");
+    const setErr = (id, input, msg) => {
+        $("#err-" + id).textContent = msg;
+        input.setAttribute("aria-invalid", msg ? "true" : "false");
+    };
+    eye.addEventListener("click", () => {
+        const show = pass.type === "password";
+        pass.type = show ? "text" : "password";
+        eye.textContent = show ? "Ocultar" : "Mostrar";
+        eye.setAttribute("aria-pressed", String(show));
+    });
+    form.addEventListener("submit", async (ev) => {
+        ev.preventDefault();
+        const okEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim());
+        const okPass = pass.value.length >= 6;
+        setErr("l-email", email, okEmail ? "" : "Digite um e-mail válido, como nome@email.com.");
+        setErr("l-pass", pass, okPass ? "" : "A senha precisa ter pelo menos 6 caracteres.");
+        if (!okEmail || !okPass) {
+            form.classList.remove("shake");
+            void form.offsetWidth;
+            form.classList.add("shake");
+            (okEmail ? pass : email).focus();
+            return;
+        }
+        btn.disabled = true;
+        btn.classList.add("loading");
+        btn.textContent = "Entrando…";
+        await sleep(reduce ? 200 : 1100);
+        const first = email.value.trim().split("@")[0].split(/[._-]/)[0].slice(0, 20);
+        session = { name: first.charAt(0).toUpperCase() + first.slice(1), guest: false };
+        saveSession();
+        pass.value = "";
+        btn.disabled = false;
+        btn.classList.remove("loading");
+        btn.textContent = "Entrar";
+        navigate("inicio");
+    });
+    $("#l-guest").addEventListener("click", () => { session = { name: "Visitante", guest: true }; saveSession(); navigate("inicio"); });
+    $("#l-forgot").addEventListener("click", (ev) => {
+        ev.preventDefault();
+        $("#l-msg").textContent = "Ambiente demonstrativo: não há recuperação de senha.";
+    });
+}
+function setupFloaters() {
+    if (reduce)
+        return;
+    $("#fps").innerHTML = Array.from({ length: 16 }, () => {
+        const s = 10 + Math.random() * 26;
+        return `<i style="left:${(Math.random() * 100).toFixed(1)}%;--s:${s.toFixed(0)}px;--t:${(9 + Math.random() * 9).toFixed(1)}s;--d:${(-Math.random() * 14).toFixed(1)}s"></i>`;
+    }).join("");
+}
+function setupScroll() {
+    const bar = $("#progress");
+    const head = $("header");
+    const fab = $("#fab");
+    let queued = false;
+    const update = () => {
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.transform = `scaleX(${h > 0 ? window.scrollY / h : 0})`;
+        head.classList.toggle("scrolled", window.scrollY > 8);
+        fab.classList.toggle("show", window.scrollY > 500);
+        queued = false;
+    };
+    window.addEventListener("scroll", () => { if (!queued) {
+        queued = true;
+        requestAnimationFrame(update);
+    } }, { passive: true });
+    update();
+}
+function drift() {
+    units.forEach((u) => {
+        u.minutes = Math.max(5, Math.min(90, u.minutes + Math.round(Math.random() * 10 - 5)));
+    });
+    renderUnits();
+}
+const slotText = (d) => (d === 0 ? "hoje" : d === 1 ? "amanhã" : `em ${d} dias`);
+function renderSpecialties(query) {
+    const q = query.trim().toLowerCase();
+    const list = specialties.filter((s) => (s.name + " " + s.summary).toLowerCase().includes(q));
+    $("#spec-list").innerHTML = list.length
+        ? list.map((s, i) => `<li class="spec" style="animation-delay:${i * 60}ms">
+        <span class="badge" aria-hidden="true">${s.name[0]}</span><h3>${s.name}</h3><p>${s.summary}</p>
+        <div class="spec-foot"><span>Próxima vaga ${slotText(s.nextSlotDays)}</span>
+        <button type="button" class="link" data-id="${s.id}">Agendar</button></div></li>`).join("")
+        : `<li class="empty">Nenhuma especialidade encontrada para “${q.replace(/[<>&]/g, "")}”. Tente outro termo ou ligue para (11) 3000-0100.</li>`;
+}
+function validate(b) {
+    const e = {};
+    if (b.name.trim().split(/\s+/).filter(Boolean).length < 2)
+        e.name = "Informe nome e sobrenome.";
+    const digits = b.phone.replace(/\D/g, "");
+    if (digits.length < 10 || digits.length > 11)
+        e.phone = "Digite o telefone com DDD, por exemplo (11) 91234-5678.";
+    if (!b.specialtyId)
+        e.specialtyId = "Escolha uma especialidade.";
+    if (!b.consent)
+        e.consent = "Autorize o contato para enviar a solicitação.";
+    if (!b.date)
+        e.date = "Escolha uma data.";
+    else if (b.date < todayISO())
+        e.date = "Escolha uma data a partir de hoje.";
+    return e;
+}
+function todayISO() {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+function readForm(form) {
+    const f = new FormData(form);
+    return {
+        name: String(f.get("name") ?? ""),
+        phone: String(f.get("phone") ?? ""),
+        specialtyId: String(f.get("specialtyId") ?? ""),
+        date: String(f.get("date") ?? ""),
+        period: f.get("period") === "tarde" ? "tarde" : "manha",
+        consent: f.get("consent") === "on",
+    };
+}
+const FIELDS = ["name", "phone", "specialtyId", "date", "consent"];
+function showErrors(form, errs) {
+    FIELDS.forEach((k) => {
+        const input = form.elements.namedItem(k);
+        const out = $("#err-" + k);
+        out.textContent = errs[k] ?? "";
+        input.setAttribute("aria-invalid", errs[k] ? "true" : "false");
+    });
+    const first = FIELDS.find((k) => errs[k]);
+    if (first)
+        form.elements.namedItem(first).focus();
+}
+function init() {
+    renderUnits();
+    renderContent();
+    renderTeam();
+    setupReveal();
+    setupScroll();
+    setupHero();
+    setupTilt();
+    setupMagnet();
+    setupMenu();
+    setupTyper();
+    setupLogin();
+    setupFloaters();
+    setupRouter();
+    setInterval(drift, 8000);
+    const search = $("#search");
+    renderSpecialties("");
+    search.addEventListener("input", () => renderSpecialties(search.value));
+    const phone = $("#phone");
+    phone.addEventListener("input", () => {
+        const d = phone.value.replace(/\D/g, "").slice(0, 11);
+        phone.value = d.length > 10 ? `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`
+            : d.length > 6 ? `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}`
+                : d.length > 2 ? `(${d.slice(0, 2)}) ${d.slice(2)}` : d;
+    });
+    const form = $("#book");
+    const select = $("#specialtyId");
+    select.insertAdjacentHTML("beforeend", specialties.map((s) => `<option value="${s.id}">${s.name}</option>`).join(""));
+    $("#date").min = todayISO();
+    const goBook = (ev) => {
+        const btn = ev.target.closest("button[data-id]");
+        if (!btn)
+            return;
+        select.value = btn.dataset.id ?? "";
+        pendingFocus = "#name";
+        navigate("agendar");
+    };
+    $("#spec-list").addEventListener("click", goBook);
+    $("#team").addEventListener("click", goBook);
+    form.addEventListener("submit", (ev) => {
+        ev.preventDefault();
+        const b = readForm(form);
+        const errs = validate(b);
+        showErrors(form, errs);
+        if (Object.keys(errs).length)
+            return;
+        const spec = specialties.find((s) => s.id === b.specialtyId);
+        const [y, m, d] = b.date.split("-").map(Number);
+        const when = new Date(y, m - 1, d).toLocaleDateString("pt-BR", { weekday: "long", day: "numeric", month: "long" });
+        $("#ok-name").textContent = b.name.trim().split(/\s+/)[0];
+        $("#ok-detail").textContent = `${spec?.name}, ${when}, período da ${b.period === "manha" ? "manhã" : "tarde"}.`;
+        $("#ok-code").textContent = "CDR-" + Math.random().toString(36).slice(2, 6).toUpperCase();
+        form.hidden = true;
+        $("#ok").hidden = false;
+        $("#ok").focus();
+    });
+    $("#again").addEventListener("click", () => {
+        form.reset();
+        showErrors(form, {});
+        $("#ok").hidden = true;
+        form.hidden = false;
+        $("#name").focus();
+    });
+}
+document.addEventListener("DOMContentLoaded", init);
+
+</script>
+</body>
+</html>
